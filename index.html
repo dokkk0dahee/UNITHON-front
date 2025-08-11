@@ -1,10 +1,66 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=375, height=812, initial-scale=1.0, user-scalable=no" />
-    <title>Vite + React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>모바일 전용 앱</title>
+    
+    <script>
+      // PC 접속 시 차단
+      function detectDevice() {
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent);
+        const isTablet = /tablet|ipad|playbook|silk/i.test(userAgent);
+        
+        if (!isMobile && !isTablet) {
+          document.body.innerHTML = `
+            <div style="
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              height: 100vh;
+              font-family: Arial, sans-serif;
+              text-align: center;
+              padding: 20px;
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+            ">
+              <div style="font-size: 48px; margin-bottom: 20px;">📱</div>
+              <h1 style="font-size: 24px; margin-bottom: 16px;">모바일 전용 서비스</h1>
+              <p style="font-size: 16px; margin-bottom: 20px; line-height: 1.5;">
+                이 서비스는 모바일 기기에서만 이용할 수 있습니다.<br>
+                스마트폰이나 태블릿으로 접속해 주세요.
+              </p>
+              <div style="
+                background: rgba(255, 255, 255, 0.2);
+                padding: 16px 24px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+              ">
+                <p style="margin: 0; font-size: 14px;">
+                  💡 모바일 브라우저에서 접속하거나<br>
+                  📱 홈 화면에 추가하여 앱처럼 사용하세요
+                </p>
+              </div>
+            </div>
+          `;
+          return false;
+        }
+        return true;
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', detectDevice);
+      } else {
+        detectDevice();
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

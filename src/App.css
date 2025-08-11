@@ -43,3 +43,361 @@
 .read-the-docs {
   color: #888;
 }
+
+/* 모바일 전용 CSS */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* 모바일 터치 최적화 */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 텍스트 선택 허용 (필요한 경우) */
+p, span, h1, h2, h3, h4, h5, h6 {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* 모바일 스크롤 최적화 */
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+  overscroll-behavior: none;
+}
+
+/* 안전 영역 지원 (iPhone X 이상) */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+/* 스크롤바 완전 숨김 */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari and Opera */
+}
+
+/* 모든 스크롤바 숨김 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* 레이아웃 고정 요소 설정 */
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+.flex-shrink {
+  flex-shrink: 1;
+}
+
+/* 메인 콘텐츠 영역 최적화 */
+main {
+  min-height: 0;
+  flex: 1 1 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* 헤더와 네비게이션 항상 최상단/최하단에 표시 */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+}
+
+nav {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  background: white;
+}
+
+/* 스마트폰 기종별 최적화 */
+@media (max-width: 375px) {
+  /* iPhone SE 등 작은 화면 */
+  .xs\:text-xs { font-size: 0.75rem; }
+  .xs\:p-2 { padding: 0.5rem; }
+  .xs\:w-12 { width: 3rem; }
+  .xs\:h-12 { height: 3rem; }
+}
+
+@media (min-width: 376px) and (max-width: 414px) {
+  /* iPhone Plus 등 중간 화면 */
+  .sm\:text-sm { font-size: 0.875rem; }
+  .sm\:p-3 { padding: 0.75rem; }
+  .sm\:w-14 { width: 3.5rem; }
+  .sm\:h-14 { height: 3.5rem; }
+}
+
+@media (min-width: 415px) and (max-width: 768px) {
+  /* iPad 등 큰 화면 */
+  .md\:text-base { font-size: 1rem; }
+  .md\:p-4 { padding: 1rem; }
+  .md\:w-16 { width: 4rem; }
+  .md\:h-16 { height: 4rem; }
+}
+
+/* 모바일 전용 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 터치 피드백 */
+.touch-feedback {
+  transition: all 0.1s ease;
+}
+
+.touch-feedback:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+/* 모바일 전용 포커스 스타일 */
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* 모바일 전용 호버 효과 (터치 디바이스에서만) */
+@media (hover: hover) {
+  .hover\:bg-gray-50:hover {
+    background-color: rgb(249 250 251);
+  }
+  
+  .hover\:text-gray-700:hover {
+    color: rgb(55 65 81);
+  }
+  
+  .hover\:bg-gray-200:hover {
+    background-color: rgb(229 231 235);
+  }
+}
+
+/* 모바일 전용 미디어 쿼리 */
+@media (max-width: 768px) {
+  .mobile-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+}
+
+/* 모바일 전용 폰트 렌더링 최적화 */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* 모바일 전용 터치 영역 최소 크기 */
+button, 
+input[type="button"], 
+input[type="submit"], 
+input[type="reset"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 모바일 전용 입력 필드 최적화 */
+input, textarea, select {
+  font-size: 16px; /* iOS에서 줌 방지 */
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/* 모바일 전용 이미지 최적화 */
+img {
+  max-width: 100%;
+  height: auto;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+/* 레이아웃 안정성 강화 */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header-fixed {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: white;
+}
+
+.nav-fixed {
+  position: sticky;
+  bottom: 0;
+  z-index: 1000;
+  background: white;
+}
+
+.content-responsive {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 스마트폰 기종별 그리드 최적화 */
+@media (max-width: 375px) {
+  .grid-cols-responsive {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 376px) {
+  .grid-cols-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 터치 영역 최적화 */
+.touch-optimized {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 스크롤 성능 최적화 */
+.scroll-optimized {
+  will-change: scroll-position;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* iOS Safari 특별 처리 */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari 전용 스타일 */
+  .safe-area-bottom {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 0.5rem);
+  }
+  
+  .safe-area-top {
+    padding-top: calc(env(safe-area-inset-top) + 0.5rem);
+  }
+}
+
+/* Android Chrome 특별 처리 */
+@supports not (-webkit-touch-callout: none) {
+  /* Android Chrome 전용 스타일 */
+  .safe-area-bottom {
+    padding-bottom: 0.5rem;
+  }
+  
+  .safe-area-top {
+    padding-top: 0.5rem;
+  }
+}
+
+/* 화면 회전 시 레이아웃 안정성 */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* 가로 모드에서 높이가 작을 때 */
+  header {
+    padding: 0.5rem;
+  }
+  
+  nav {
+    padding: 0.25rem;
+  }
+  
+  .pb-20 {
+    padding-bottom: 4rem;
+  }
+}
+
+/* 매우 작은 화면 대응 */
+@media (max-height: 600px) {
+  .pb-20 {
+    padding-bottom: 3.5rem;
+  }
+  
+  header {
+    padding: 0.5rem;
+  }
+  
+  nav {
+    padding: 0.25rem;
+  }
+}
+
+/* 높이 변수 및 100dvh 지원 */
+:root {
+  --header-h: 56px; /* 헤더 높이 */
+  --nav-h: 64px;    /* 네비게이션 높이 */
+}
+
+.app-shell {
+  height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  .app-shell {
+    height: 100dvh;
+  }
+}
+
+/* 메인 영역 계산 높이 유틸 */
+.app-main-size {
+  height: calc(100vh - var(--header-h) - var(--nav-h));
+}
+
+@supports (height: 100dvh) {
+  .app-main-size {
+    height: calc(100dvh - var(--header-h) - var(--nav-h));
+  }
+}
+
+/* iOS 안전 영역 반영 */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .app-main-safe-bottom {
+    padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom));
+  }
+}

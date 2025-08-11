@@ -1,12 +1,102 @@
-# React + Vite
+# 모바일 전용 웹 애플리케이션
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+이 프로젝트는 **모바일 기기 전용**으로 설계된 웹 애플리케이션입니다.
 
-Currently, two official plugins are available:
+## 🚫 PC 접속 제한
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **PC에서 접속 시 자동 차단**: 데스크톱 브라우저로 접속하면 모바일 전용 안내 페이지가 표시됩니다
+- **모바일/태블릿만 접속 가능**: 스마트폰이나 태블릿에서만 정상적으로 사용할 수 있습니다
 
-## Expanding the ESLint configuration
+## 📱 모바일 최적화 기능
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. 뷰포트 고정
+- iPhone SE (375x812) 기준으로 최적화
+- 사용자 확대/축소 비활성화
+- 모바일 브라우저에 최적화된 뷰포트 설정
+
+### 2. 브레이크포인트 최소화
+- `xs`: 375px (iPhone SE)
+- `sm`: 414px (iPhone Plus)
+- `md`: 768px (iPad 세로)
+- `lg`: 1024px (iPad 가로, 제한적 사용)
+
+### 3. 터치 인터페이스 최적화
+- 최소 터치 영역: 44x44px
+- 터치 피드백 애니메이션
+- 스와이프 제스처 지원
+- iOS 안전 영역 지원
+
+### 4. PWA (Progressive Web App) 지원
+- 홈 화면에 추가 가능
+- 독립 실행 모드
+- 오프라인 지원 준비
+- 앱과 유사한 사용자 경험
+
+## 🛠️ 기술 스택
+
+- **Frontend**: React 18 + Vite
+- **Styling**: Tailwind CSS (모바일 최적화)
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+
+## 🚀 개발 서버 실행
+
+```bash
+cd mobile-app
+npm install
+npm run dev
+```
+
+## 📱 테스트 방법
+
+### 모바일에서 테스트
+1. 개발 서버 실행
+2. 모바일 기기에서 접속
+3. 정상 작동 확인
+
+### PC에서 테스트 (차단 확인)
+1. 개발 서버 실행
+2. PC 브라우저에서 접속
+3. 모바일 전용 안내 페이지 표시 확인
+
+## 📋 주요 페이지
+
+- **홈**: 앱 소개 및 주요 기능
+- **프로필**: 사용자 정보 및 설정
+- **설정**: 앱 설정 및 옵션
+
+## 🎨 디자인 특징
+
+- 모바일 우선 설계 (Mobile First)
+- 터치 친화적 UI/UX
+- 직관적인 네비게이션
+- 부드러운 애니메이션 효과
+- 모던한 Material Design 스타일
+
+## 📱 지원 기기
+
+- iOS Safari (iPhone, iPad)
+- Android Chrome
+- Samsung Internet
+- 기타 모바일 브라우저
+
+## ⚠️ 주의사항
+
+- **PC 브라우저에서는 사용할 수 없습니다**
+- 모바일 기기에서 최적의 경험을 제공합니다
+- 반응형 디자인이 아닌 모바일 전용 디자인입니다
+
+## 🔧 커스터마이징
+
+### 색상 변경
+`tailwind.config.js`에서 `colors` 섹션을 수정하여 앱 테마를 변경할 수 있습니다.
+
+### 애니메이션 추가
+`src/App.css`에서 새로운 키프레임 애니메이션을 추가할 수 있습니다.
+
+### 페이지 추가
+`src/App.jsx`의 `renderPage` 함수에 새로운 페이지를 추가할 수 있습니다.
+
+## 📄 라이선스
+
+이 프로젝트는 MIT 라이선스 하에 배포됩니다.
