@@ -2,13 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Pretendardvariable';
+  src: url('../../public/fonts/PretendardVariable.woff2') format('woff2');
+  font-style: normal;
+  font-display: swap;
+}
 /* 모바일 터치 부드럽게 */
 html {
   -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Pretendard', sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light;
