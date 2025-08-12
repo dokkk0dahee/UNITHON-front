@@ -42,7 +42,7 @@ const Voting = ({ className = "" }) => {
     };
 
     return (
-        <div className={`bg-[#FFFFFF] w-[313px] rounded-[15px] p-[15px] ${className}`} style={{minHeight: '400px', boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.10)"}}>
+        <div className={`bg-[#FFFFFF] w-[313px] rounded-[15px] p-[15px] ${className}`} style={{minHeight: '100px', boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.10)"}}>
             <div className="">
                 <div className="flex justify-between items-center">
                     <h3 className='text-[#4F72CE] text-[20px] text-left mt-[0px] mb-[0px] leading-[140%] tracking-[0]'
@@ -54,7 +54,7 @@ const Voting = ({ className = "" }) => {
                         총 {votingData.totalVotes}명이 참여했습니다
                     </p>
                 </div>
-                <h4 className="text-[16px] text-[#2F4159] text-left mt-2 mb-0 leading-[140%] tracking-[0]"
+                <h4 className="text-[16px] text-[#2F4159] text-left mt-[5px] mb-[0px] leading-[140%] tracking-[0]"
                     style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 600 }}>
                     {votingData.question}
                 </h4>
@@ -62,30 +62,29 @@ const Voting = ({ className = "" }) => {
 
 
         {/* 투표 영역 */}
-            <div className="flex flex-col gap-[8px]">
+            <div className="flex flex-col gap-[8px] mt-[10px]">
                 {votingData.options.map((option) => (
                     <div key={option.id} className="relative">
                         <button
                             onClick={() => !votingData.hasVoted && setSelectedOption(option.id)}
                             disabled={votingData.hasVoted}
-                            className={`w-[283px] h-[28px] bg-[#FFFFFF] border-[#EBEBEB] border-[1px] px-[15px] py-[10px] rounded-[16px] transition-all duration-200 ${
+                            className={`w-[283px] h-[28px] border-[1px] px-[15px] py-[10px] rounded-[16px] transition-all duration-200 ${
                                 selectedOption === option.id
-                                    ? 'bg-[#FFFFFF] border-[#EBEBEB]'
-                                    : 'border-[#F3F8FF] bg-[#849BEA]'
+                                    ? 'bg-[#F3F8FF] border-[#849BEA]'
+                                    : 'bg-[#FFFFFF] border-[#EBEBEB]'
                             } ${
                                 votingData.hasVoted ? 'cursor-default' : 'cursor-pointer'
                             }`}
                         >
                             <div className="flex items-center justify-between">
-                                <span className="font-medium text-gray-800">
+                                <span className="text-[14px] text-[#2F4159] leading-[200%] tracking-[0]"
+                                    style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>
                                     {option.text}
                                 </span>
                                 <div className="flex items-center space-x-2">
-                                    <span className="text-sm text-gray-600">
-                                        {option.votes}표
-                                    </span>
                                     {votingData.hasVoted && (
-                                        <span className="text-sm font-semibold text-gray-800">
+                                        <span className="text-[14px] text-[#2F4159] leading-[200%] tracking-[0]"
+                                        style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>
                                             {getPercentage(option.votes)}%
                                         </span>
                                     )}
@@ -107,34 +106,14 @@ const Voting = ({ className = "" }) => {
                 ))}
             </div>
 
-            {!votingData.hasVoted && (
-                <button
-                    onClick={handleVote}
-                    disabled={!selectedOption}
-                    className={`w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 ${
-                        !selectedOption ? "opacity-50 cursor-not-allowed" : ""
-                    }`}
-                >
-                    투표하기
-                </button>
-            )}
+            <button
+                onClick={!votingData.hasVoted ? handleVote : undefined}
+                disabled={votingData.hasVoted || !selectedOption}
+                className={`w-[267px] h-[28px] mt-[8px] px-[15px] py-[10px] rounded-[15px] border-0 transition-colors duration-200 text-[#FFFFFF] text-[16px] leading-[175%] tracking-[0]
+                    ${votingData.hasVoted ? "bg-[#849BEA] cursor-default" : !selectedOption ? "bg-[#EBEBEB] cursor-not-allowed" : "bg-[#4F72CE] hover:bg-blue-600"}`}>
+                {votingData.hasVoted ? "투표완료" : "투표하기"}
+            </button>
 
-            {votingData.hasVoted && (
-                <div className="text-center">
-                    <p className="text-green-600 font-medium">
-                        투표가 완료되었습니다! 🎉
-                    </p>
-                    <button
-                        onClick={() => {
-                            setVotingData(prev => ({ ...prev, hasVoted: false }));
-                            setSelectedOption(null);
-                        }}
-                        className="mt-3 text-blue-500 hover:text-blue-600 text-sm underline"
-                    >
-                        다시 투표하기
-                    </button>
-                </div>
-            )}
         </div>
     );
 };
