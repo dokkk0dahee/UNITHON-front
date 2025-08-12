@@ -1,118 +1,227 @@
-import { useState } from "react";
-import { Home as HomeIcon, Calendar as CalendarIcon, Bot, Users, User, Bell } from "lucide-react";
-import './App.css'
-import HomePage from './pages/Home/Home.jsx'
-import CalendarPage from './pages/Calendar/Calendar.jsx'
-import ChatbotPage from './pages/Chatbot/Chatbot.jsx'
-import CommunityPage from './pages/Community/Community.jsx'
-import Mypage from './pages/Mypage/Mypage.jsx'
+  import { useState } from "react";
+  import './App.css'
+  import './index.css'
+  import HomePage from './pages/Home/Home.jsx'
+  import CalendarPage from './pages/Calendar/Calendar.jsx'
+  import ChatbotPage from './pages/Chatbot/Chatbot.jsx'
+  import CommunityPage from './pages/Community/Community.jsx'
+  import Mypage from './pages/Mypage/Mypage.jsx'
 
-export default function App() {
-  const [page, setPage] = useState("home");
+  export default function App() {
+    const [page, setPage] = useState("home");
 
-  const PageHeaderTitle = () => {
-    switch (page) {
-      case "home": return "My App";
-      case "calendar": return "달력";
-      case "chatbot": return "상담 챗봇";
-      case "community": return "커뮤니티";
-      case "mypage": return "마이페이지";
-      default: return "My App";
-    }
-  };
+    const PageHeaderTitle = () => {
+      switch (page) {
+        case "home": return "My App";
+        case "calendar": return "달력";
+        case "chatbot": return "상담 챗봇";
+        case "community": return "커뮤니티";
+        case "mypage": return "마이페이지";
+        default: return "My App";
+      }
+    };
 
-  const renderPage = () => {
-    switch (page) {
-      case "home": return <HomePage />;
-      case "calendar": return <CalendarPage />;
-      case "chatbot": return <ChatbotPage />;
-      case "community": return <CommunityPage />;
-      case "mypage": return <Mypage />;
-      default: return null;
-    }
-  };
+    const renderPage = () => {
+      switch (page) {
+        case "home": return <HomePage />;
+        case "calendar": return <CalendarPage />;
+        case "chatbot": return <ChatbotPage />;
+        case "community": return <CommunityPage />;
+        case "mypage": return <Mypage />;
+        default: return null;
+      }
+    };
 
-  return (
-    <div className="app-shell bg-gray-50 relative w-full">
-      {/* 상단 앱 헤더 - 고정 */}
-      <header className={`fixed top-0 left-0 w-full h-[var(--header-h)] bg-white shadow-sm text-center font-bold text-base sm:text-lg text-gray-800 z-[1000] flex items-center justify-center ${page === "home" ? "hidden" : ""}`}>
-        <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2">
-          <button className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 active:bg-gray-300 transition-colors">
-            <Bell size={16} className="text-gray-600 sm:w-[18px] sm:h-[18px]" />
-          </button>
-        </div>
-        <span className="block"><PageHeaderTitle /></span>
-      </header>
+    return (
+      <div className="app-shell bg-gray-50 relative w-full">
+        {/* 상단 앱 헤더 - 고정 */}
+        <header className={`fixed top-0 left-0 w-full h-[var(--header-h)] bg-white shadow-sm text-center font-bold text-base sm:text-lg text-gray-800 z-[1000] flex items-center justify-center ${page === "home" ? "hidden" : ""}`}>
+          <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2">
+          </div>
+          <span className="block"><PageHeaderTitle /></span>
+        </header>
 
 
-      {/* 메인 콘텐츠 - 고정 높이 계산, 스크롤 가능 */}
-      <main className={`app-main-size overflow-y-auto overflow-x-hidden ${page === "home" ? "pt-0" : "pt-[var(--header-h)]"} pb-[var(--nav-h)] px-0 scrollbar-hide w-full`}>
-        {renderPage()}
-      </main>
+        {/* 메인 콘텐츠 - 고정 높이 계산, 스크롤 가능 */}
+        <main className={`app-main-size overflow-y-auto overflow-x-hidden ${page === "home" ? "pt-0" : "pt-[var(--header-h)]"} pb-[var(--nav-h)] px-0 scrollbar-hide w-full`}>
+          {renderPage()}
+        </main>
 
 
-      {/* 하단 네비게이션 - 고정, 5개 탭 */}
-      <nav className="fixed bottom-0 left-0 w-full h-[var(--nav-h)] bg-white border-t border-gray-200 grid grid-cols-5 items-center safe-area-bottom z-[1000] shadow-lg">
-        <button 
-          onClick={() => setPage("home")} 
-          className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${
-            page === "home" 
-              ? "text-blue-500 bg-blue-50/60" 
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"
-          }`}
-        >
-          <HomeIcon size={20} className="sm:w-6 sm:h-6" />
-          <span className="text-[10px] mt-1 font-medium">홈</span>
-        </button>
+        {/* 하단 네비게이션 - 고정, 5개 탭 */}
+        <nav className="fixed bottom-0 left-0 w-full h-[50px] bg-white grid grid-cols-5 items-center z-50 shadow-lg">
+    <button
+      onClick={() => setPage("home")}
+      className={`flex flex-col items-center justify-center h-full transition-all duration-150 ${
+        page === "home" ? "text-black" : "text-gray-400 hover:text-black"
+      }`}
+    >
+      <HomeIcon className="w-6 h-6 mb-1 fill-current" />
+      <span className="text-[10px] font-medium">홈</span>
+    </button>
 
-        <button 
-          onClick={() => setPage("calendar")} 
-          className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${
-            page === "calendar" 
-              ? "text-blue-500 bg-blue-50/60" 
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"
-          }`}
-        >
-          <CalendarIcon size={20} className="sm:w-6 sm:h-6" />
-          <span className="text-[10px] mt-1 font-medium">달력</span>
-        </button>
+    <button
+      onClick={() => setPage("calendar")}
+      className={`flex flex-col items-center justify-center h-full transition-all duration-150 ${
+        page === "calendar" ? "text-black" : "text-gray-400 hover:text-black"
+      }`}
+    >
+      <CalenderIcon className="w-6 h-6 mb-1 fill-current" />
+      <span className="text-[10px] font-medium">매일 일지</span>
+    </button>
 
-        <button 
-          onClick={() => setPage("chatbot")} 
-          className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${
-            page === "chatbot" 
-              ? "text-blue-500 bg-blue-50/60" 
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"
-          }`}
-        >
-          <Bot size={20} className="sm:w-6 sm:h-6" />
-          <span className="text-[10px] mt-1 font-medium">챗봇</span>
-        </button>
+    <button
+      onClick={() => setPage("chatbot")}
+      className={`flex flex-col items-center justify-center h-full transition-all duration-150 ${
+        page === "chatbot" ? "text-black" : "text-gray-400 hover:text-black"
+      }`}
+    >
+      <ChatIcon className="w-6 h-6 mb-1 fill-current" />
+      <span className="text-[10px] font-medium">상담 챗봇</span>
+    </button>
 
-        <button 
-          onClick={() => setPage("community")} 
-          className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${
-            page === "community" 
-              ? "text-blue-500 bg-blue-50/60" 
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"
-          }`}
-        >
-          <Users size={20} className="sm:w-6 sm:h-6" />
-          <span className="text-[10px] mt-1 font-medium">커뮤니티</span>
-        </button>
+    <button
+      onClick={() => setPage("community")}
+      className={`flex flex-col items-center justify-center h-full transition-all duration-150 ${
+        page === "community" ? "text-black" : "text-gray-400 hover:text-black"
+      }`}
+    >
+      <CommunityIcon className="w-6 h-6 mb-1 fill-current" />
+      <span className="text-[10px] font-medium">커뮤니티</span>
+    </button>
 
-        <button 
-          onClick={() => setPage("mypage")} 
-          className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${
-            page === "mypage" 
-              ? "text-blue-500 bg-blue-50/60" 
-              : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"
-          }`}
-        >
-          <User size={20} className="sm:w-6 sm:h-6" />
-          <span className="text-[10px] mt-1 font-medium">마이페이지</span>
-        </button>
-      </nav>
-    </div>
-  );
-}
+    <button
+      onClick={() => setPage("mypage")}
+      className={`flex flex-col items-center justify-center h-full transition-all duration-150 ${
+        page === "mypage" ? "text-black" : "text-gray-400 hover:text-black"
+      }`}
+    >
+      <UserIcon className="w-6 h-6 mb-1 fill-current" />
+      <span className="text-[10px] font-medium">마이페이지</span>
+    </button>
+  </nav>
+
+
+      </div>
+    );
+  }
+
+
+  export function HomeIcon({ className }) {
+    return (
+      <svg
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.8611 2.27647C12.6243 2.21318 12.375 2.21318 12.1382 2.27647C11.8575 2.3515 11.6247 2.5333 11.5021 2.62905L11.467 2.65625L4.63384 7.88153C4.24703 8.17676 3.92085 8.42572 3.6781 8.75002C3.4648 9.03498 3.30578 9.35676 3.20899 9.69929C3.09884 10.0891 3.09922 10.4995 3.09967 10.9861L3.09972 17.335C3.09971 17.8648 3.0997 18.316 3.12996 18.6865C3.16176 19.0756 3.23139 19.4542 3.4158 19.8161C3.69383 20.3618 4.13748 20.8055 4.68314 21.0835C5.04508 21.2679 5.42367 21.3375 5.81283 21.3693C6.18324 21.3996 6.6344 21.3996 7.16425 21.3996H12.4894C12.4929 21.3996 12.4964 21.3996 12.5 21.3996C12.5035 21.3996 12.507 21.3996 12.5106 21.3996H17.8351C18.3649 21.3996 18.8161 21.3996 19.1865 21.3693C19.5757 21.3375 19.9543 21.2679 20.3162 21.0835C20.8619 20.8055 21.3055 20.3618 21.5836 19.8161C21.768 19.4542 21.8376 19.0756 21.8694 18.6865C21.8997 18.316 21.8997 17.8649 21.8997 17.335L21.8997 10.9861C21.9002 10.4994 21.9005 10.0891 21.7904 9.69929C21.6936 9.35676 21.5346 9.03498 21.3213 8.75002C21.0785 8.42572 20.7523 8.17677 20.3655 7.88153L13.5323 2.65625L13.4973 2.62905C13.3747 2.5333 13.1419 2.3515 12.8611 2.27647ZM13.4 19.5994H18.1997C19.0142 19.5994 19.2081 19.5883 19.3396 19.5456C19.6745 19.4368 19.937 19.1742 20.0458 18.8393C20.0886 18.7078 20.0997 18.514 20.0997 17.6994V10.883C20.0997 10.4628 20.0961 10.3673 20.0812 10.2869C20.0441 10.0871 19.9523 9.90143 19.8162 9.75057C19.7613 9.68986 19.6876 9.62903 19.3538 9.37376L12.4997 4.1324L5.64557 9.37376C5.31175 9.62903 5.23806 9.68986 5.18324 9.75057C5.04705 9.90143 4.95531 10.0871 4.91821 10.2869C4.90328 10.3673 4.89973 10.4628 4.89973 10.883V17.6994C4.89973 18.514 4.91083 18.7078 4.95356 18.8393C5.06237 19.1742 5.32492 19.4368 5.6598 19.5456C5.79133 19.5883 5.98516 19.5994 6.79972 19.5994H11.6V13.9996C11.6 13.5026 12.0029 13.0996 12.5 13.0996C12.997 13.0996 13.4 13.5026 13.4 13.9996V19.5994Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  export function CalenderIcon({ className }) {
+    return (
+      <svg
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="currentColor"
+      >
+        <path
+          d="M8.34985 13.4994C8.34985 13.0023 8.7528 12.5994 9.24985 12.5994H13.2498C13.7469 12.5994 14.1498 13.0023 14.1498 13.4994C14.1498 13.9964 13.7469 14.3994 13.2498 14.3994H9.24985C8.7528 14.3994 8.34985 13.9964 8.34985 13.4994Z"
+          fill="currentColor"
+        />
+        <path
+          d="M8.34985 16.9999C8.34985 16.5028 8.7528 16.0999 9.24985 16.0999H13.2498C13.7469 16.0999 14.1498 16.5028 14.1498 16.9999C14.1498 17.4969 13.7469 17.8999 13.2498 17.8999H9.24985C8.7528 17.8999 8.34985 17.4969 8.34985 16.9999Z"
+          fill="currentColor"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M13.7789 2.1525C13.5559 2.09897 13.3288 2.0995 13.137 2.09993L13.0868 2.10001H8.41419C7.88433 2.1 7.43315 2.09998 7.06272 2.13025C6.67356 2.16205 6.29497 2.23168 5.93303 2.41609C5.38737 2.69413 4.94372 3.13777 4.66569 3.68344C4.48128 4.04537 4.41165 4.42397 4.37985 4.81313C4.34959 5.18354 4.3496 5.63469 4.34961 6.16453V17.8354C4.3496 18.3652 4.34959 18.8165 4.37985 19.1869C4.41165 19.5761 4.48128 19.9547 4.66569 20.3166C4.94372 20.8623 5.38737 21.3059 5.93303 21.5839C6.29497 21.7683 6.67356 21.838 7.06272 21.8698C7.43313 21.9 7.88429 21.9 8.41413 21.9H16.585C17.1148 21.9 17.566 21.9 17.9364 21.8698C18.3256 21.838 18.7042 21.7683 19.0661 21.5839C19.6118 21.3059 20.0554 20.8623 20.3335 20.3166C20.5179 19.9547 20.5875 19.5761 20.6193 19.1869C20.6496 18.8165 20.6496 18.3653 20.6495 17.8355V9.66231L20.6496 9.61213C20.6501 9.42025 20.6506 9.19319 20.597 8.97019C20.5505 8.77631 20.4737 8.59097 20.3695 8.42097C20.2497 8.22543 20.0888 8.06525 19.9528 7.92989L19.9172 7.89446L14.8545 2.83216L14.8191 2.79663C14.6837 2.66067 14.5235 2.49977 14.328 2.37996C14.158 2.2758 13.9727 2.19904 13.7789 2.1525ZM13.0999 3.90025C13.0956 3.90025 13.0913 3.90025 13.0868 3.90025H8.44958C7.87468 3.90025 7.49763 3.90095 7.20927 3.92451C6.93143 3.94721 6.81608 3.98657 6.75019 4.02014C6.54322 4.1256 6.37494 4.29388 6.26948 4.50086C6.23591 4.56675 6.19655 4.68209 6.17385 4.95994C6.15029 5.24829 6.14959 5.62534 6.14959 6.20025V17.8002C6.14959 18.3752 6.15029 18.7522 6.17385 19.0406C6.19655 19.3184 6.23591 19.4337 6.26948 19.4996C6.37494 19.7066 6.54322 19.8749 6.75019 19.9804C6.81608 20.0139 6.93143 20.0533 7.20927 20.076C7.49763 20.0995 7.87468 20.1002 8.44958 20.1002H16.5495C17.1244 20.1002 17.5015 20.0995 17.7898 20.076C18.0677 20.0533 18.183 20.0139 18.2489 19.9804C18.4559 19.8749 18.6242 19.7066 18.7296 19.4996C18.7632 19.4337 18.8026 19.3184 18.8253 19.0406C18.8488 18.7522 18.8495 18.3752 18.8495 17.8002V9.89996L15.5702 9.89996C15.3159 9.89999 15.0738 9.90001 14.8698 9.88335C14.6474 9.86517 14.3923 9.82279 14.1374 9.69287C13.7798 9.51071 13.4892 9.22005 13.307 8.86254C13.1771 8.60756 13.1347 8.35245 13.1166 8.13005C13.0999 7.9261 13.0999 7.68407 13.0999 7.42977L13.0999 3.90025ZM17.5768 8.09995L14.9 5.42334V7.99995C14.9 8.05518 14.9447 8.09995 15 8.09995H17.5768Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  export function ChatIcon({ className }) {
+    return (
+      <svg
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.4996 4.1501C8.16415 4.1501 4.6496 7.66466 4.6496 12.0001C4.6496 16.3355 8.16415 19.8501 12.4996 19.8501C13.8608 19.8501 15.1387 19.5044 16.2528 18.8966C16.4569 18.7853 16.6962 18.7572 16.9206 18.8184L19.035 19.3951C19.4948 19.5205 19.7796 19.5972 19.9887 19.6341C20.0631 19.6473 20.1102 19.6517 20.1366 19.6531C20.1425 19.6484 20.1479 19.643 20.1526 19.6371C20.1511 19.6107 20.1467 19.5636 20.1336 19.4893C20.0967 19.2802 20.0199 18.9953 19.8945 18.5356L19.3179 16.4211C19.2567 16.1968 19.2847 15.9575 19.3961 15.7533C20.0038 14.6392 20.3495 13.3614 20.3495 12.0001C20.3495 7.66466 16.835 4.1501 12.4996 4.1501ZM2.84961 12.0001C2.84961 6.67055 7.17004 2.3501 12.4996 2.3501C17.8291 2.3501 22.1495 6.67055 22.1495 12.0001C22.1495 13.5384 21.7889 14.9948 21.1471 16.2873L21.6414 18.0998C21.7533 18.5099 21.8531 18.8758 21.9062 19.1763C21.9599 19.4809 21.9966 19.867 21.8493 20.2526C21.6564 20.7579 21.2573 21.157 20.7521 21.3499C20.3664 21.4971 19.9803 21.4605 19.6758 21.4067C19.3752 21.3537 19.0094 21.2539 18.5993 21.142L16.7867 20.6476C15.4943 21.2895 14.0379 21.6501 12.4996 21.6501C7.17004 21.6501 2.84961 17.3296 2.84961 12.0001Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  export function CommunityIcon({ className }) {
+    return (
+      <svg
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="currentColor"
+      >
+        <path
+          d="M8.99962 15.1002C8.99962 17.0002 10.5496 18.5002 12.4996 18.5002C14.4496 18.5002 15.9996 17.0002 15.9996 15.1002C15.9996 13.2002 14.4496 11.7002 12.4996 10.0002C10.5496 11.7002 8.99962 13.2002 8.99962 15.1002Z"
+          fill="currentColor"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M14.7644 1.83176C14.0053 1.13309 12.8108 1.30634 12.2666 2.16348L9.3104 6.81953L8.61081 6.1899C7.98794 5.62932 6.98774 5.60057 6.35953 6.26259C4.46102 8.26325 3.34961 10.8751 3.34961 13.6006C3.34961 16.1306 4.28893 18.3447 5.93211 19.9244C7.57319 21.5021 9.86702 22.4006 12.4996 22.4006C17.8281 22.4006 21.6496 18.516 21.6496 13.6006C21.6496 9.43786 18.9903 5.72118 14.7644 1.83176ZM10.2594 8.68304L13.686 3.28607C17.7585 7.06316 19.8496 10.2844 19.8496 13.6006C19.8496 17.4853 16.871 20.6006 12.4996 20.6006C10.2822 20.6006 8.451 19.8491 7.17959 18.6268C5.91028 17.4065 5.1496 15.6706 5.1496 13.6006C5.1496 11.4307 6.011 9.31266 7.53412 7.64253L8.89752 8.86959C9.0944 9.04678 9.35932 9.12825 9.62174 9.0923C9.88415 9.05635 10.1174 8.90664 10.2594 8.68304Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
+  export function UserIcon({ className }) {
+    return (
+      <svg
+        className={className}
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="24"
+        viewBox="0 0 25 24"
+        fill="currentColor"
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.4997 2.60107C9.79349 2.60107 7.59969 4.79488 7.59969 7.50107C7.59969 10.2073 9.79349 12.4011 12.4997 12.4011C15.2059 12.4011 17.3997 10.2073 17.3997 7.50107C17.3997 4.79488 15.2059 2.60107 12.4997 2.60107ZM9.39969 7.50107C9.39969 5.78899 10.7876 4.40107 12.4997 4.40107C14.2118 4.40107 15.5997 5.78899 15.5997 7.50107C15.5997 9.21316 14.2118 10.6011 12.4997 10.6011C10.7876 10.6011 9.39969 9.21316 9.39969 7.50107Z"
+          fill="currentColor"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M12.4996 13.5995C10.1877 13.5995 8.03022 14.0521 6.41594 14.9216C4.80282 15.7905 3.59962 17.1657 3.59962 18.9995L3.59961 19.3272C3.59958 19.5139 3.59955 19.7039 3.61282 19.8663C3.62759 20.0471 3.66317 20.2713 3.77947 20.4996C3.93767 20.81 4.1901 21.0625 4.50059 21.2206C4.72884 21.3369 4.95309 21.3725 5.13382 21.3872C5.29626 21.4005 5.48629 21.4005 5.67295 21.4004L19.3265 21.3996C19.5131 21.3996 19.7031 21.3997 19.8656 21.3864C20.0463 21.3716 20.2705 21.336 20.4987 21.2197C20.8092 21.0615 21.0616 20.8091 21.2197 20.4986C21.336 20.2704 21.3716 20.0462 21.3864 19.8655C21.3996 19.703 21.3996 19.513 21.3996 19.3264L21.3996 18.9995C21.3996 17.1657 20.1964 15.7905 18.5832 14.9216C16.969 14.0521 14.8115 13.5995 12.4996 13.5995ZM5.39961 18.9995C5.39961 18.0719 5.98727 17.1971 7.26956 16.5063C8.55071 15.8162 10.3933 15.3995 12.4996 15.3995C14.6059 15.3995 16.4485 15.8162 17.7296 16.5063C19.0119 17.1971 19.5996 18.0719 19.5996 18.9995L19.5978 19.5978L5.40142 19.5986L5.39961 18.9995Z"
+          fill="currentColor"
+        />
+      </svg>
+    );
+  }
+
