@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import arrow from '../../../assets/icons/arrow.svg'; // 뒤로가기 아이콘
+import chatting from '../../../assets/icons/chatting.svg';
 import backgroundImg from '../../../assets/background.png'; // 흐릿한 배경 이미지 (대체하세요)
+
 
 const storyData = [
     {
@@ -23,8 +25,11 @@ const storyData = [
 export default function Ep1Page() {
     const [step, setStep] = useState(0);
     const [inputValue, setInputValue] = useState("");
+    const textareaRef = useRef(null);
     const [answers, setAnswers] = useState({});
     const navigate = useNavigate();
+    
+
 
     const currentData = storyData[step];
 
@@ -62,6 +67,13 @@ export default function Ep1Page() {
         }
     };
 
+    useEffect(() => {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = "auto";
+            textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+        }
+        }, [inputValue]);
+
     return (
         <div
             onClick={handleScreenClick}
@@ -78,8 +90,7 @@ export default function Ep1Page() {
                 fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif',
                 userSelect: "none",
                 cursor: isOnlyNarration ? "pointer" : "default",
-            }}
-        >
+            }}>
             {/* 뒤로가기 버튼 */}
             <button
                 onClick={(e) => {
@@ -101,7 +112,7 @@ export default function Ep1Page() {
                         borderRadius: "20px",
                         padding: "20px 20px",
                         maxWidth: "90%",
-                        marginTop: "120px",
+                        marginTop: "150px",
                         fontSize: "14px",
                         color: "#e0e0e0",
                     }}
@@ -113,14 +124,14 @@ export default function Ep1Page() {
 
             {/* 상황 및 설명 박스 */}
             {(currentData.situation || currentData.narration) && (
-                <div
+                <div className="text-left"
                     style={{
                         backgroundColor: "rgba(0,0,0,0.7)",
                         borderRadius: "12px",
                         padding: "20px",
                         maxWidth: "90%",
-                        marginTop: "80px",
-                        marginBottom: "20px",
+                        marginTop: "50px",
+                        marginBottom: isOnlyNarration ? "180px" : "50px",
                         lineHeight: "1.5",
                         boxShadow: "0 0 10px rgba(255,255,255,0.2)",
                         fontSize: "14px",
@@ -138,22 +149,23 @@ export default function Ep1Page() {
                 <div
                     style={{
                         position: "fixed",
-                        bottom: "10px",
+                        bottom: "380px",
                         left: "50%",
                         transform: "translateX(-50%)",
-                        width: "95%",
-                        maxWidth: "500px",
+                        width: "90%",
+                        maxWidth: "400px",
                         display: "flex",
                         alignItems: "center",
-                        backgroundColor: "rgba(255,255,255,0.1)",
-                        borderRadius: "30px",
-                        padding: "8px 16px",
-                        boxShadow: "0 0 10px rgba(0,0,0,0.2)",
+                        backgroundColor: "rgba(0,0,0,0.6)",
+                        borderRadius: "15px",
+                        padding: "5px 10px",
+                        boxShadow: "0 0 10px rgba(0,0,0,0.2)"
                     }}
                     onClick={(e) => e.stopPropagation()} // 입력창 클릭 시 이벤트 버블링 막기
                 >
-                    <input
+                    <textarea
                         type="text"
+                        ref={textareaRef}
                         placeholder="여기에 입력하세요"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
@@ -162,8 +174,8 @@ export default function Ep1Page() {
                             background: "transparent",
                             border: "none",
                             outline: "none",
-                            color: "#fff",
-                            fontSize: "16px",
+                            color: "#ffffff",
+                            fontSize: "14px",
                             fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif',
                         }}
                         onKeyDown={(e) => {
@@ -172,21 +184,16 @@ export default function Ep1Page() {
                     />
                     <button
                         onClick={handleNext}
-                        style={{
-                            background: "rgba(135, 155, 234, 0.6)",
-                            borderRadius: "50%",
-                            width: "36px",
-                            height: "36px",
-                            border: "none",
-                            marginLeft: "10px",
-                            cursor: "pointer",
-                        }}
-                        aria-label="전송"
-                    >
-                        ▶
+                        className="cursor-pointer bg-transparent border-none p-0"
+                        aria-label="전송">
+                        <img src={chatting} alt="채팅 아이콘" className="w-6 h-6" />
                     </button>
                 </div>
             )}
         </div>
     );
+
+    
 }
+
+
