@@ -1,44 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
+import episodes from "../../Simulation/components/episode.json"
+import { useNavigate } from 'react-router-dom';
 
 const CardCarousel = () => {
+    const navigate = useNavigate();
     const scrollContainerRef = useRef(null);
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
-
-    // 샘플 에피소드 데이터
-    const episodes = [
-        {
-            id: 1,
-            title: "ep.1 제목",
-            description: "에피소드 설명",
-            buttonText: "시작하기"
-        },
-        {
-            id: 2,
-            title: "ep.2 제목",
-            description: "에피소드 설명",
-            buttonText: "시작하기"
-        },
-        {
-            id: 3,
-            title: "ep.3 제목",
-            description: "에피소드 설명",
-            buttonText: "시작하기"
-        },
-        {
-            id: 4,
-            title: "ep.4 제목",
-            description: "에피소드 설명",
-            buttonText: "시작하기"
-        },
-        {
-            id: 5,
-            title: "ep.5 제목",
-            description: "에피소드 설명",
-            buttonText: "시작하기"
-        }
-    ];
+    const [page, setPage] = useState(0);
+    const episodesToShow = episodes.slice(page * 10, page * 10 + 10);
+    
 
     // 현재 인덱스에 따라 스크롤 위치 계산
     const scrollToIndex = (index) => {
@@ -152,39 +124,44 @@ const CardCarousel = () => {
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                 >
-                    {episodes.map((episode, index) => (
+                    {episodesToShow.map((episode, index) => (
                         <div 
                             key={episode.id}
                             className="flex-shrink-0 w-[212px] h-[308px] bg-[#FFFFFF] rounded-[25px] p-[15px] flex flex-col justify-between snap-center"
                             style={{
-                                boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.05)',
+                                border: '1px solid var(--Background-deep, #FC8FB9)',
+                                boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.10)',
                                 fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif',
-                                marginRight: index < episodes.length - 1 ? '20px' : '0' // 마지막 카드가 아닌 경우 오른쪽 마진 추가
+                                marginRight: index < episodesToShow.length - 1 ? '20px' : '0' // 마지막 카드가 아닌 경우 오른쪽 마진 추가
                             }}
                         >
                             <div className="flex-1 text-center">
                                 <h4 className="text-[20px] mt-[0px] mb-[0px] leading-[140%] tracking-[0] text-[#000000]" style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 600 }}>
                                     {episode.title}
                                 </h4>
-                                <p className="text-[14px] mt-[5px] mb-[0px] leading-[200%] tracking-[0] text-[#2F4159]" style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>
+                                <p className="mx-auto w-[190px] text-[12px] mt-[70px] mb-[0px] leading-[200%] tracking-[0] text-[#2F4159]" style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>
                                     {episode.description}
                                 </p>
+                                <p className="text-[14px] mt-[60px] mb-[0px] leading-[200%] tracking-[0] text-[#2F4159]" style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>
+                                    {episode.question}
+                                </p>
+
                             </div>
                             <button 
                                 className="w-[182px] h-[28px] px-[15px] py-[10px] 
-                                            bg-[#FFFCEF] text-[#2F4159] text-[16px] 
+                                            bg-[#849BEA] text-[#F7F7F8] text-[16px] 
                                             rounded-[15px] flex items-center justify-center mx-auto
                                             transition-all duration-300 ease-out
-                                            transform hover:scale-[1.02] active:scale-95 active:translate-y-[1px] active:bg-[#FFF4CE]
+                                            transform hover:scale-[1.02] active:scale-95 active:translate-y-[1px]
                                             border-0 focus:outline-none shadow-sm"
                                 style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 600 }}
-                                onClick={() => console.log(`에피소드 ${episode.id} 시작`)}
+                                onClick={() => navigate(`/simulation/${episode.id}`)}
                             >
-                            {episode.buttonText}
+                            시작하기
                             </button>
                         </div>
                     ))}
-                </div>
+                </div>  
             </div>
         </div>
     );

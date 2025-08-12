@@ -17,7 +17,7 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
-/* 비활성 날짜 (이전/다음 달 날짜) */
+/* 비활성 날짜 (이전/다음 달 날짜) * /
 .react-calendar__tile--neighboringMonth {
   color: #D9D8DD !important; 
 }

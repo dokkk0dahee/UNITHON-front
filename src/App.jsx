@@ -6,6 +6,7 @@ import CalendarPage from './pages/Calendar/Calendar.jsx';
 import ChatbotPage from './pages/Chatbot/Chatbot.jsx';
 import CommunityPage from './pages/Community/Community.jsx';
 import Mypage from './pages/Mypage/Mypage.jsx';
+import SimulationPage from "./pages/Simulation/Simulation.jsx";
 
 import Attendence from "./pages/Calendar/components/AttendanceList.jsx";
 import DayDetail from "./pages/Calendar/components/Scenario.jsx";
@@ -82,6 +83,7 @@ function Layout() {
           <Route path="/mypage" element={<Mypage />} />
           <Route path="/attendence" element={<Attendence />} />
           <Route path="/date/:date" element={<DayDetail />} />
+          <Route path="/simulation/:id" element={<SimulationPage />} />
         </Routes>
       </main>
 
