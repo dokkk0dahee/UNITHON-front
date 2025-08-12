@@ -1,6 +1,7 @@
 import BannerUser from './components/Banner-user';
 import CardCarousel from './components/CardCarousel';
 import Voting from './components/Voting';
+import LoveTest from './components/LoveTest';
 
 export default function HomePage() {
     return (
@@ -15,6 +16,13 @@ export default function HomePage() {
                 {/* 투표 컴포넌트 추가 */}
                 <div className=" flex justify-center">
                     <Voting className=""/>
+                </div>
+            </div>
+            <hr className="w-[343px] border-[#D8E3FF] my-[44px]" />
+            <div className="px-4 pb-4">
+                {/* 연애 테스트 컴포넌트 추가 */}
+                <div className=" flex justify-center">
+                    <LoveTest className=""/>
                 </div>
             </div>
         </div>
