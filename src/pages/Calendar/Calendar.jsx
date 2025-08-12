@@ -1,6 +1,6 @@
 export default function CalendarPage() {
     return (
-        <div className="p-4 animate-fade-in min-h-full">
+        <div className="px-4 pb-4 animate-fade-in min-h-full">
         <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm mb-4">
             <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">📅 달력</h2>
             <p className="text-gray-600 text-sm">일정 관리 기능을 준비 중입니다.</p>

@@ -1,6 +1,6 @@
 export default function Mypage() {
     return (
-        <div className="p-4 animate-slide-up min-h-full">
+        <div className="px-4 pb-4 animate-slide-up min-h-full">
         <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm mb-4">
             <div className="flex items-center space-x-4 mb-4">
             <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white text-xl font-bold">👤</div>

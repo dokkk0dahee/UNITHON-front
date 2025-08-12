@@ -1,7 +1,6 @@
 #root {
-  width: 375px;
-  height: 812px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0;
   padding: 0;
   text-align: center;
   overflow: hidden;
@@ -121,14 +120,14 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: white;
+  background: #F8F9FD;
 }
 
 nav {
   position: sticky;
   bottom: 0;
   z-index: 1000;
-  background: white;
+  background: #F8F9FD;
 }
 
 /* 스마트폰 기종별 최적화 */
@@ -268,7 +267,7 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: white;
+  background: #F8F9FD;
 }
 
 .nav-fixed {

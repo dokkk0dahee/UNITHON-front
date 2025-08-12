@@ -1,6 +1,6 @@
 export default function ChatbotPage() {
     return (
-        <div className="p-4 animate-fade-in min-h-full">
+        <div className="px-4 pb-4 animate-fade-in min-h-full">
         <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm mb-4">
             <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">🤖 상담 챗봇</h2>
             <p className="text-gray-600 text-sm">무엇을 도와드릴까요? 아래 입력창에 질문을 남겨주세요.</p>

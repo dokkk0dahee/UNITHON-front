@@ -4,22 +4,53 @@
 
 @font-face {
   font-family: 'Pretendardvariable';
-  src: url('../../public/fonts/PretendardVariable.woff2') format('woff2');
+  src: url('/fonts/PretendardVariable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
+
+/* 기본 폰트 설정 */
+@layer base {
+  * {
+    font-family: 'Pretendardvariable', 'Pretendard', system-ui, sans-serif;
+  }
+  
+  html {
+    font-family: 'Pretendardvariable', 'Pretendard', system-ui, sans-serif;
+  }
+  
+  body {
+    font-family: 'Pretendardvariable', 'Pretendard', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea {
+    font-family: 'Pretendardvariable', 'Pretendard', system-ui, sans-serif;
+  }
+}
+
+/* 스크롤바 숨김 */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
 /* 모바일 터치 부드럽게 */
 html {
   -webkit-tap-highlight-color: transparent;
 }
 
 :root {
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendardvariable', 'Pretendard', system-ui, sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
   color-scheme: light;
   color: #213547;
-  background-color: #ffffff;
+  background-color: #F8F9FD;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +73,8 @@ body {
   width: 100%;
   min-width: 320px;
   overflow: hidden; /* 외부 스크롤 방지, 메인은 자체 스크롤 */
-  background: #f9fafb;
+  background: #F8F9FD;
+  font-family: 'Pretendardvariable', sans-serif;
 }
 
 /* 접근성 포커스 */

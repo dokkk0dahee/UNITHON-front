@@ -33,9 +33,9 @@ export default function App() {
   };
 
   return (
-    <div className="app-shell bg-gray-50 relative">
+    <div className="app-shell bg-gray-50 relative w-full">
       {/* 상단 앱 헤더 - 고정 */}
-      <header className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-[var(--header-h)] bg-white shadow-sm text-center font-bold text-base sm:text-lg text-gray-800 z-[1000] border-b border-gray-200 flex items-center justify-center">
+      <header className={`fixed top-0 left-0 w-full h-[var(--header-h)] bg-white shadow-sm text-center font-bold text-base sm:text-lg text-gray-800 z-[1000] flex items-center justify-center ${page === "home" ? "hidden" : ""}`}>
         <div className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2">
           <button className="w-7 h-7 sm:w-8 sm:h-8 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 active:bg-gray-300 transition-colors">
             <Bell size={16} className="text-gray-600 sm:w-[18px] sm:h-[18px]" />
@@ -44,13 +44,15 @@ export default function App() {
         <span className="block"><PageHeaderTitle /></span>
       </header>
 
+
       {/* 메인 콘텐츠 - 고정 높이 계산, 스크롤 가능 */}
-      <main className="app-main-size overflow-y-auto overflow-x-hidden pt-[var(--header-h)] pb-[var(--nav-h)] px-0 scrollbar-hide w-full max-w-md mx-auto">
+      <main className={`app-main-size overflow-y-auto overflow-x-hidden ${page === "home" ? "pt-0" : "pt-[var(--header-h)]"} pb-[var(--nav-h)] px-0 scrollbar-hide w-full`}>
         {renderPage()}
       </main>
 
+
       {/* 하단 네비게이션 - 고정, 5개 탭 */}
-      <nav className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md h-[var(--nav-h)] bg-white border-t border-gray-200 grid grid-cols-5 items-center safe-area-bottom z-[1000] shadow-lg">
+      <nav className="fixed bottom-0 left-0 w-full h-[var(--nav-h)] bg-white border-t border-gray-200 grid grid-cols-5 items-center safe-area-bottom z-[1000] shadow-lg">
         <button 
           onClick={() => setPage("home")} 
           className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${

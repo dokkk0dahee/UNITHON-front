@@ -5,7 +5,29 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'sans': ['Pretendardvariable', 'Pretendard', 'system-ui', 'sans-serif'],
+      'pretendard': ['Pretendardvariable', 'Pretendard', 'sans-serif'],
+    },
     extend: {
+      fontWeight: {
+        'thin': '100',
+        'extralight': '200',
+        'light': '300',
+        'normal': '400',
+        'medium': '500',
+        'semibold': '600',
+        'bold': '700',
+        'extrabold': '800',
+        'black': '900',
+      },
+      
+      //그림자
+      boxShadow: {
+        'custom-6-10': '0 6px 10px 0 rgba(0, 0, 0, 0.10)',
+        'custom-light': '0 4px 4px 0 rgba(0, 0, 0, 0.10)',
+      },
+
       // 모바일 전용 색상 팔레트
       colors: {
         primary: {
