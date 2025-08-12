@@ -1,18 +1,32 @@
+import Attendence from "./components/AttendanceList";
+
 export default function CalendarPage() {
     return (
         <div className="px-4 pb-4 animate-fade-in min-h-full">
-        <div className="bg-white rounded-xl p-4 sm:p-6 shadow-sm mb-4">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-3">📅 달력</h2>
-            <p className="text-gray-600 text-sm">일정 관리 기능을 준비 중입니다.</p>
-        </div>
-        <div className="grid grid-cols-responsive gap-3">
-            {Array.from({ length: 7 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-lg py-6 text-center shadow-sm">
-                <div className="text-gray-500 text-sm">D{ i === 0 ? '-day' : `+${i}` }</div>
-                <div className="mt-2 text-gray-800 font-semibold">일정 없음</div>
+            <h3 className="text-[28px] font-bold pt-[90px] mb-[0px] text-left ml-[24px] mt-[0px]">머시개의 활동 현황</h3>
+            
+            <div className="mx-auto w-[173px] h-[71px] mt-[16px] px-[58px] py-[12px] rounded-[16px] bg-[#FFFFFF] flex items-center justify-center"
+                style={{boxShadow: "0 4px 4px 0 rgba(0, 0, 0, 0.05)"}}>
+                {/* 왼쪽 */}
+                <div className="flex flex-col items-center flex-1 mr-[25px]">
+                    <span className="text-[32px] text-[#4F72CE]"
+                        style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 600 }}>10</span>
+                    <span className="text-[14px] text-[#3C3D46]"
+                    style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>연속 일</span>
+                </div>
+                {/* 구분선 */}
+                <div className="w-[1px] h-[32px] bg-[#849BEA]/50"></div>
+                {/* 오른쪽 */}
+                <div className="flex flex-col items-center flex-1 ml-[25px]">
+                    <span className="text-[32px] text-[#4F72CE]"
+                    style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 600 }}>1</span>
+                    <span className="text-[14px] text-[#3C3D46]"
+                    style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 500 }}>연속 주</span>
+                </div>
             </div>
-            ))}
-        </div>
+            <hr className="w-[343px] border-[#D8E3FF] my-[44px]" />
+
+            <Attendence />
         </div>
     );
 }
