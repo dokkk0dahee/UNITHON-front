@@ -46,7 +46,7 @@ export default function SimulationPage() {
                     width: '105px',
                     height: '105px',
                     }}
-                    onClick={() => alert('버튼 클릭!')}
+                    onClick={() =>navigate('/simulation/level4')}
                 />
             </div>
         </div>

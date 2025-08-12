@@ -155,7 +155,7 @@ const CardCarousel = () => {
                                             transform hover:scale-[1.02] active:scale-95 active:translate-y-[1px]
                                             border-0 focus:outline-none shadow-sm"
                                 style={{ fontFamily: 'Pretendardvariable, Pretendard, system-ui, sans-serif', fontWeight: 600 }}
-                                onClick={() => navigate(`/simulation/${episode.id}`)}
+                                onClick={() => navigate(`/simulation`)}
                             >
                             시작하기
                             </button>
