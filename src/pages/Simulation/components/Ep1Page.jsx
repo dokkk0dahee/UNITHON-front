@@ -34,7 +34,10 @@ export default function Ep1Page() {
     const currentData = storyData[step];
 
     // 상황과 질문이 없고 narration만 있을 때
-    const isOnlyNarration = !currentData.situation && !currentData.question && currentData.narration;
+    const isOnlyNarration = 
+    (currentData.situation === undefined || currentData.situation === "") &&
+    (currentData.question === undefined || currentData.question === "") &&
+    !!currentData.narration;
 
     const handleNext = () => {
         // 상황과 질문이 있을 때는 입력값 필수
@@ -130,8 +133,7 @@ export default function Ep1Page() {
                         borderRadius: "12px",
                         padding: "20px",
                         maxWidth: "90%",
-                        marginTop: "50px",
-                        marginBottom: isOnlyNarration ? "180px" : "50px",
+                        marginTop: isOnlyNarration ? "180px" : "50px",
                         lineHeight: "1.5",
                         boxShadow: "0 0 10px rgba(255,255,255,0.2)",
                         fontSize: "14px",
