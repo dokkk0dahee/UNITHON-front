@@ -11,8 +11,10 @@ import Level4 from "./pages/Simulation/components/Level4.jsx";
 import Ep1Page from "./pages/Simulation/components/Ep1Page.jsx";
 import Feedback from "./pages/Simulation/components/Feedback.jsx";
 
+import navbar from "./assets/navbar.svg"
 import Attendence from "./pages/Calendar/components/AttendanceList.jsx";
 import DayDetail from "./pages/Calendar/components/Scenario.jsx";
+
 
 // lucide-react에서 아이콘 import
 import { Home as HomeIcon, Calendar as ReportIcon, MessageSquare as ChatIcon, Users as CommuIcon, User as MyIcon } from "lucide-react";
@@ -23,43 +25,46 @@ function BottomNav() {
   const currentPath = location.pathname;
 
   return (
-    <nav className="fixed bottom-0 left-0 w-full h-[var(--nav-h)] bg-white grid grid-cols-5 items-center border-t shadow-lg z-[1000]">
-      <button 
-        onClick={() => navigate('/')} 
-        className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${currentPath === '/' ? "text-blue-500 bg-blue-50/60" : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"}`}>
-        <HomeIcon className="w-6 h-6" />
-        <span className="text-[10px] mt-1 font-medium">홈</span>
-      </button>
+    <nav className="fixed bottom-0 left-0 w-full h-[var(--nav-h)] bg-white items-center border-none shadow-lg z-[1000]">
+    {/* 네비게이션 바 이미지 */}
+    <img src={navbar} className="w-full" />
 
-      <button 
-        onClick={() => navigate('/calendar')} 
-        className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${currentPath === '/calendar' ? "text-blue-500 bg-blue-50/60" : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"}`}>
-        <ReportIcon className="w-6 h-6" />
-        <span className="text-[10px] mt-1 font-medium">달력</span>
-      </button>
+    {/* 홈 버튼 */}
+    <button
+      onClick={() => navigate('/')}
+      className="absolute w-[60px] h-[60px] bg-transparent border-none left-[10px] top-1/2 -translate-y-1/2"
+    >
+    </button>
 
-      <button 
-        onClick={() => navigate('/chatbot')} 
-        className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${currentPath === '/chatbot' ? "text-blue-500 bg-blue-50/60" : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"}`}>
-        <ChatIcon className="w-6 h-6" />
-        <span className="text-[10px] mt-1 font-medium">챗봇</span>
-      </button>
+    {/* 달력 버튼 */}
+    <button
+      onClick={() => navigate('/calendar')}
+      className="absolute  w-[60px] h-[60px] bg-transparent border-none left-[85px] top-1/2 -translate-y-1/2"
+    >
+    </button>
 
-      <button 
-        onClick={() => navigate('/community')} 
-        className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${currentPath === '/community' ? "text-blue-500 bg-blue-50/60" : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"}`}>
-        <CommuIcon className="w-6 h-6" />
-        <span className="text-[10px] mt-1 font-medium">커뮤니티</span>
-      </button>
+    {/* 챗봇 버튼 */}
+    <button
+      onClick={() => navigate('/chatbot')}
+      className="absolute w-[60px] h-[60px] bg-transparent border-none left-[165px] top-1/2 -translate-y-1/2"
+    >
+    </button>
 
-      <button 
-        onClick={() => navigate('/mypage')} 
-        className={`flex flex-col items-center justify-center h-full rounded-xl transition-all duration-200 ${currentPath === '/mypage' ? "text-blue-500 bg-blue-50/60" : "text-gray-500 hover:text-gray-700 hover:bg-gray-50 active:scale-95"}`}>
-        <MyIcon className="w-6 h-6" />
-        <span className="text-[10px] mt-1 font-medium">마이페이지</span>
-      </button>
-    </nav>
-  );
+    {/* 커뮤니티 버튼 */}
+    <button
+      onClick={() => navigate('/community')}
+      className="absolute  w-[60px] h-[60px] bg-transparent border-none left-[243px] top-1/2 -translate-y-1/2"
+    >
+    </button>
+
+    {/* 마이페이지 버튼 */}
+    <button
+      onClick={() => navigate('/mypage')}
+      className="absolute  w-[60px] h-[60px] bg-transparent border-none left-[320px] top-1/2 -translate-y-1/2"
+    >
+    </button>
+  </nav>
+);
 }
 
 function Layout() {
