@@ -9,6 +9,7 @@ import Mypage from './pages/Mypage/Mypage.jsx';
 import SimulationPage from "./pages/Simulation/Simulation.jsx";
 import Level4 from "./pages/Simulation/components/Level4.jsx";
 import Ep1Page from "./pages/Simulation/components/Ep1Page.jsx";
+import Feedback from "./pages/Simulation/components/Feedback.jsx";
 
 import Attendence from "./pages/Calendar/components/AttendanceList.jsx";
 import DayDetail from "./pages/Calendar/components/Scenario.jsx";
@@ -88,6 +89,7 @@ function Layout() {
           <Route path="/simulation" element={<SimulationPage />} />
           <Route path="/simulation/level4" element={<Level4 />} />
           <Route path="/simulation/level4/ep1" element={<Ep1Page />} />
+          <Route path="/feedback" element={<Feedback />} />
         </Routes>
       </main>
 
